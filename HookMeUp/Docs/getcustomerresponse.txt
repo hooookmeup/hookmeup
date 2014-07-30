@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-16"?>
+<GETCUSTOMERINFORSP xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <TRANSACTIONINFO>
+    <TRANSACTIONID>d5e1016572f54bc28a9bf5a23d9a318b</TRANSACTIONID>
+    <TRANSACTIONDATETIME>2013-04-12 07:18:26</TRANSACTIONDATETIME>
+    <PARTNERID>WebPostage</PARTNERID>
+    <TRANSACTION_MSG_ID>414d512050425131574544312020202050f62f0722890002</TRANSACTION_MSG_ID>
+    <TRANSACTION_CORREL_ID>414d512050425131574544312020202050f62f0722890003</TRANSACTION_CORREL_ID>
+  </TRANSACTIONINFO>
+  <CUSTOMER_INFO>
+    <item>
+      <ArrayOfitemItem>
+        <CUSTOMER_ID>0010118781</CUSTOMER_ID>
+        <CAN>00164952004</CAN>
+        <DEROGATORY_STATUS>Y</DEROGATORY_STATUS>
+        <ADDRESS_DETAIL>
+          <item>
+            <ArrayOfitemItem>
+              <CUSTOMER_BPN>12190208</CUSTOMER_BPN>
+              <ADDRESS_TYPE />
+              <NAME>BOZEMAN FARMS</NAME>
+              <NAME2 xsi:nil="true" />
+              <CITY>FLORA</CITY>
+              <STREET1>BOX 270</STREET1>
+              <STREET2 />
+              <STATE>MS</STATE>
+              <COUNTRY>US</COUNTRY>
+              <ZIP>39071-0270</ZIP>
+              <EMAILADDRESS />
+              <PHONE_DETAIL>
+                <item>
+                  <ArrayOfitemItem>
+                    <PHONE_TYPE />
+                    <PHONE>+16018798547</PHONE>
+                  </ArrayOfitemItem>
+                </item>
+              </PHONE_DETAIL>
+            </ArrayOfitemItem>
+            <ArrayOfitemItem>
+              <CUSTOMER_BPN>10118781</CUSTOMER_BPN>
+              <ADDRESS_TYPE />
+              <NAME>BOZEMAN FARMS</NAME>
+              <NAME2 xsi:nil="true" />
+              <CITY>FLORA</CITY>
+              <STREET1>212 MAIN ST</STREET1>
+              <STREET2 />
+              <STATE>MS</STATE>
+              <COUNTRY>US</COUNTRY>
+              <ZIP>39071</ZIP>
+              <EMAILADDRESS />
+              <PHONE_DETAIL />
+            </ArrayOfitemItem>
+          </item>
+        </ADDRESS_DETAIL>
+      </ArrayOfitemItem>
+    </item>
+  </CUSTOMER_INFO>
+  <SUBSCRIPTION_INFO>
+    <item>
+      <ArrayOfitemItem>
+        <CUSTOMER_ID>0010118781</CUSTOMER_ID>
+        <CAN>00164952004</CAN>
+        <SUBSCRIPTION_DETAIL>
+          <item>
+            <ArrayOfitemItem>
+              <SUBSCRIPTION_ID>5800004183</SUBSCRIPTION_ID>
+              <PREPAYACCOUNT_ID />
+              <SUBSCRIPTION_STATUS>ACTV</SUBSCRIPTION_STATUS>
+              <PRODUCTS>
+                <item>
+                  <ArrayOfitemItem>
+                    <PRODUCT_TYPE>S</PRODUCT_TYPE>
+                    <PRODUCT_ID>PTEM</PRODUCT_ID>
+                    <CONTRACT_BEGIN_DATE>20130326</CONTRACT_BEGIN_DATE>
+                    <CONTRACT_END_DATE>20140325</CONTRACT_END_DATE>
+                    <BILLING_FREQUENCY>2</BILLING_FREQUENCY>
+                    <BILLING_AMOUNT>           0</BILLING_AMOUNT>
+                  </ArrayOfitemItem>
+                </item>
+              </PRODUCTS>
+            </ArrayOfitemItem>
+          </item>
+        </SUBSCRIPTION_DETAIL>
+      </ArrayOfitemItem>
+    </item>
+  </SUBSCRIPTION_INFO>
+  <PREPAID_BALANCE_INFO>
+    <item>
+      <ArrayOfitemItem>
+        <CUSTOMER_ID>0010118781</CUSTOMER_ID>
+        <CAN />
+        <PREPAID_BALANCE_DETAIL>
+          <item>
+            <ArrayOfitemItem>
+              <PREPAY_ACCOUNT_ID>1500004169</PREPAY_ACCOUNT_ID>
+              <PREPAY_ACCOUNT_BALANCE>       24.44</PREPAY_ACCOUNT_BALANCE>
+              <PREPAY_ACCOUNT_BALANCE_FREE>             0.00</PREPAY_ACCOUNT_BALANCE_FREE>
+            </ArrayOfitemItem>
+          </item>
+        </PREPAID_BALANCE_DETAIL>
+      </ArrayOfitemItem>
+    </item>
+  </PREPAID_BALANCE_INFO>
+  <PREFERRED_PAYMENT_INFO>
+    <item>
+      <ArrayOfitemItem>
+        <CUSTOMER_ID>0010118781</CUSTOMER_ID>
+        <CAN>00164952004</CAN>
+        <PREFERRED_PAYMENT_DETAIL>
+          <item>
+            <ArrayOfitemItem>
+              <PREFERRED_PAYMENT_METHOD_TYPE>POSTG</PREFERRED_PAYMENT_METHOD_TYPE>
+              <PREFERRED_PAYMENT_METHOD>W</PREFERRED_PAYMENT_METHOD>
+              <PP_ACCOUNT_NUMBER />
+              <PBP_ACCOUNT_NUMBER />
+              <CC_NAME_HOLDER>V P</CC_NAME_HOLDER>
+              <CC_NUMBER>************9416</CC_NUMBER>
+              <CC_EXPIRATION_DATE>01/2015</CC_EXPIRATION_DATE>
+              <CC_TYPE>DV</CC_TYPE>
+              <ACH_ACCOUNT_NUMBER />
+              <BANK_ROUTING_NUMBER />
+            </ArrayOfitemItem>
+          </item>
+        </PREFERRED_PAYMENT_DETAIL>
+      </ArrayOfitemItem>
+    </item>
+  </PREFERRED_PAYMENT_INFO>
+  <ERROR_INFO>
+    <ERROR_SOURCE>SAP</ERROR_SOURCE>
+    <ERROR_CODE>000</ERROR_CODE>
+    <ERROR_MESSAGE>Success</ERROR_MESSAGE>
+  </ERROR_INFO>
+</GETCUSTOMERINFORSP>

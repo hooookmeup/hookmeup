@@ -1,0 +1,5 @@
+C:\Users\ma041sa\documents\visual studio 2012\EAPO_Build\bin\SS.Framework.Common.dll
+C:\Users\ma041sa\documents\visual studio 2012\EAPO_Build\bin\SS.Framework.Common.pdb
+C:\Users\ma041sa\documents\visual studio 2012\Projects\HookMeUp\FrameworkLayer\Common\obj\Release\SS.Framework.Common.csprojResolveAssemblyReference.cache
+C:\Users\ma041sa\documents\visual studio 2012\Projects\HookMeUp\FrameworkLayer\Common\obj\Release\SS.Framework.Common.dll
+C:\Users\ma041sa\documents\visual studio 2012\Projects\HookMeUp\FrameworkLayer\Common\obj\Release\SS.Framework.Common.pdb

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<codeSmith xmlns="http://www.codesmithtools.com/schema/csp.xsd">
+  <defaultTemplate path="..\CodeSmith\RootTemplate.cst" />
+  <propertySets>
+    <propertySet name="RootTemplate" template="..\..\CodeSmith\RootTemplate.cst">
+      <property name="OutputDirectory">..\DataAccessLayer\AzureTableStorage\</property>
+      <property name="EntityMap">..\..\CodeSmith\Entities.xml</property>
+    </propertySet>
+  </propertySets>
+</codeSmith>

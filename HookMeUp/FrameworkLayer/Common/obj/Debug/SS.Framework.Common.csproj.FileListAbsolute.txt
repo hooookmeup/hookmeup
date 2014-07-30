@@ -1,0 +1,9 @@
+C:\Users\ma041sa\documents\visual studio 2010\Projects\SmartShop\FrameworkLayer\Common\bin\Debug\WPS.Framework.Common.dll
+C:\Users\ma041sa\documents\visual studio 2010\Projects\SmartShop\FrameworkLayer\Common\bin\Debug\WPS.Framework.Common.pdb
+C:\Users\ma041sa\documents\visual studio 2010\Projects\SmartShop\FrameworkLayer\Common\bin\Debug\Microsoft.WindowsAzure.Diagnostics.dll
+C:\Users\ma041sa\documents\visual studio 2010\Projects\SmartShop\FrameworkLayer\Common\bin\Debug\Microsoft.WindowsAzure.StorageClient.dll
+C:\Users\ma041sa\documents\visual studio 2010\Projects\SmartShop\FrameworkLayer\Common\bin\Debug\Microsoft.WindowsAzure.Diagnostics.xml
+C:\Users\ma041sa\documents\visual studio 2010\Projects\SmartShop\FrameworkLayer\Common\bin\Debug\Microsoft.WindowsAzure.StorageClient.xml
+C:\Users\ma041sa\documents\visual studio 2010\Projects\SmartShop\FrameworkLayer\Common\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ma041sa\documents\visual studio 2010\Projects\SmartShop\FrameworkLayer\Common\obj\Debug\WPS.Framework.Common.dll
+C:\Users\ma041sa\documents\visual studio 2010\Projects\SmartShop\FrameworkLayer\Common\obj\Debug\WPS.Framework.Common.pdb

@@ -1,0 +1,167 @@
+<%-- 
+Name: RootTemplate.cst
+Author: Vladimir Golos
+Description: Generates Azure table entity objects from an entity map file. 
+--%>
+
+<%@ CodeTemplate Language="C#" TargetLanguage="Text" Src="CommonTemplate.cs" Inherits="CommonTemplate" Debug="False" CompilerVersion="v3.5" Description="Template description here." %>
+
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Assembly Name="System.Design" %>
+<%@ Assembly Name="System.Data" %>
+
+
+
+<%@ Import Namespace="SchemaExplorer" %>
+<%@ Import Namespace="System.Data" %>
+<%@ Import Namespace="System.Text" %>
+
+
+<%@ XmlProperty Name="EntityMap" Schema="TableEntity.xsd" Optional="True" Category="Context" %>
+<%@ Property Name="QueryName" Type="System.string"  Optional="False" Category="Context"  %>
+
+		/// <summary>
+	    /// Return List of <%= CurrentEntity.Name %> objects
+		/// if excepion happeneds during Table operation it must be cought in calling method.
+		/// </summary>
+	
+	public List<<%= CurrentEntity.Name %>> TransactionsForTimeRange(<%=ParamString()%>)
+    {
+        List<<%= CurrentEntity.Name %>> rez = new List<<%= CurrentEntity.Name %>>();
+        NextRecordInfo nextRec = new NextRecordInfo();
+        do
+        {
+            DataServiceQuery<<%= CurrentEntity.Name %>> Qtran = (DataServiceQuery<<%= CurrentEntity.Name %>>)servCtx.CreateQuery<<%= CurrentEntity.Name %>>(TableName).Where(<%=SelectionQuery()%> );
+            nextRec = GetNextPage(ref rez, Qtran, nextRec, 0);
+        }
+        while (!string.IsNullOrEmpty(nextRec.NextPartition));
+        return rez;
+    }
+
+<script runat="template">
+// My methods here.
+
+
+
+private Entity _entityElement = null;
+private AdditionalQuery _queryElement = null;
+
+
+[Browsable(false)]
+public Entity CurrentEntity
+{
+	get {return _entityElement;}
+	set {_entityElement = value;}
+}
+
+[Browsable(false)]
+public AdditionalQuery CurrentQuery
+{
+	get {return _queryElement;}
+	set {_queryElement = value;}
+}
+
+
+protected override void OnPreRender()
+{
+	//System.Diagnostics.Debugger.Break();
+	// if this template is called directly, then we need to set the EntityElement property using the name of the target entity.
+	if (CurrentEntity == null) 	
+		CurrentEntity = FindEntityByName( EntityName);
+		else
+		  EntityName = CurrentEntity.Name;
+	if (CurrentEntity == null) 
+	      throw new ApplicationException("You must either pass in an EntityElement object from a parent template or set the name of the entity.");
+	CurrentQuery = FindQueryByName(QueryName);
+	base.OnPreRender();
+}
+
+
+public Entity FindEntityByName(string entityName)
+{
+	Entity result = null;
+	if (EntityName != null && EntityName.Length > 0)
+	{
+		for (int i = 0; i < EntityMap.Entities.Count; i++)
+		{
+			if (EntityMap.Entities[i].Name == EntityName)
+			{
+				result = EntityMap.Entities[i];
+				break;
+			}
+		}
+	}
+	return result;
+}
+
+
+private Property GetByName(string propertyName)
+{
+	Property rez = null;
+	foreach(Property property in CurrentEntity.Properties)
+	{
+		if (property.Name==propertyName)
+		{
+			rez = property;
+			break;
+			}
+	}
+	return rez;
+}
+
+
+public AdditionalQuery FindQueryByName(string queryName)
+{
+	AdditionalQuery result = null;
+	if (queryName != null && queryName.Length > 0)
+	{
+		for (int i = 0; i < CurrentEntity.AdditionalQueries.Count; i++)
+		{
+			if (CurrentEntity.AdditionalQueries[i].Name == queryName)
+			{
+				result = CurrentEntity.AdditionalQueries[i];
+				break;
+			}
+		}
+	}
+	return result;
+}
+
+public string ParamString()
+{  
+	StringBuilder rez = new StringBuilder() ;
+	bool first = true;
+	foreach(SelectionProperty sp in  CurrentQuery.SelectionProperties)
+	{
+		Property pr = GetByName(sp.PropertyName);
+		if (pr != null)
+		{
+		if (!first)
+		  rez.Append(", ");
+		else
+		  first = false;
+		 rez.Append(pr.Type );
+		 rez.Append("  ");
+		 rez.Append(sp.ParamName);
+		}
+		}
+	return rez.ToString();
+}
+
+
+public string SelectionQuery()
+{  
+	StringBuilder rez = new StringBuilder("ent=> ") ;
+	string Logic ="";
+	foreach(SelectionProperty sp in  CurrentQuery.SelectionProperties)
+	{
+		rez.Append(" "+Logic+" ");
+		rez.Append("ent."+sp.PropertyName +" "+ sp.CompareSign +" "+ sp.ParamName );
+	    Logic = sp.NextSelectionLogic;
+		
+	}
+	return rez.ToString();
+}
+
+
+</script>

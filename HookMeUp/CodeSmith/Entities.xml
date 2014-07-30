@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<EntityMap Version="1.0"  Namespace="SS.DL.AzureTableStorage"  xmlns="http://www.codesmithtools.com/entitymap" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+
+
+<Entity Name="Question" TableName="Questions" PartitionKeyProperty="CategoryId">
+    <RowKey Separator="_">
+            <KeyProperty  Property="QuestionId"  Conversion=" Guid.NewGuid().ToString()"  />
+    </RowKey>
+    <Property Name="CategoryId"   Type="string"  NullValue="" AllowNull="false"   />
+    <Property Name="QuestionId"  Type="string"  NullValue="" AllowNull="false"   />
+    <Property Name="SectionName"  Type="string"    />
+    <Property Name="Options"  Type="QuestionOptions[]"  isStruct="true" />
+    <Property Name="Name"  Type="string" />
+    <Property Name="InputType"   Type="QuestionType"  AllowNull="false"  isEnum="true"  />
+    <Property Name="IsAnswerReq"   Type="bool"  />
+    <Property Name="Answer" Type="int" />
+    <Property Name="IsPositive"  Type="bool"      />
+  </Entity>
+
+<Entity Name="User" TableName="Users" PartitionKeyProperty="UserPartition">
+    <RowKey Separator="_">
+            <KeyProperty  Property="UserId"   />
+    </RowKey>
+    <Property Name="UserPartition"  Type="string"  AllowNull="false"   />
+    <Property Name="UserId"  Type="string"  AllowNull="false"   />
+    <Property Name="UserName"  Type="string"  AllowNull="false"   />
+    <Property Name="Password"  Type="string"  NullValue="" AllowNull="false"   />
+    <Property Name="IsAdmin"  Type="bool"      />
+    <Property Name="Gender"  Type="string"  NullValue=""    />
+    <Property Name="LastLoginDate"  Type="string"  NullValue=""    />
+    <Property Name="IsActive"  Type="bool"      />
+    <Property Name="Latitude"  Type="double"    />
+    <Property Name="Longitude"  Type="double"     />
+    <Property Name="ChatId"  Type="string"  NullValue=""    />
+     <Property Name="CompatIndex"  Type="int"     />
+      	<Property Name="DeviceName"   Type="string"   />
+      	<Property Name="DeviceVersion"   Type="string"   />
+      	<Property Name="DevicePlatform"   Type="string"   />
+      	<Property Name="DeviceId"   Type="string"   />
+      	<Property Name="DevicePhGapVersion"   Type="string"   />
+	    <Property Name="IsOnline"  Type="bool"      />
+    	<Property Name="FacebookId"   Type="string"   />
+    	 <Property Name="AppState"   Type="AppStateType"  AllowNull="false"  isEnum="true"  />
+		  <Property Name="Score"  Type="CategoryScore[]"  isStruct="true" />
+ </Entity>
+
+<Entity Name="UserLocation" TableName="UserLocations" PartitionKeyProperty="Latitude">
+    <RowKey Separator="_">
+            <KeyProperty  Property="Longitude"  />
+    </RowKey>
+    <Property Name="Latitude"  Type="string"  AllowNull="false"   />
+    <Property Name="Longitude"  Type="string"  AllowNull="false"   />
+    <Property Name="UserId"  Type="string"  AllowNull="false"   />
+    <Property Name="LocationTime"  Type="DateTime"  AllowNull="false"   />
+ </Entity>
+ 
+ <Entity Name="UserChat" TableName="UserChats" PartitionKeyProperty="UserId">
+     <RowKey Separator="_">
+             <KeyProperty  Property="ChatId"  Conversion=" Guid.NewGuid().ToString()"/>
+     </RowKey>
+     <Property Name="UserId"  Type="string"  AllowNull="false"   />
+     <Property Name="ChatId"  Type="string"  AllowNull="false"   />
+     <Property Name="ChatTime"  Type="DateTime"  AllowNull="false"   />
+ </Entity>
+  <Entity Name="UserQuestion" TableName="UserQuestions" PartitionKeyProperty="UserId">
+       <RowKey Separator="_">
+               <KeyProperty  Property="QuestionId"  />
+       </RowKey>
+       <Property Name="UserId"  Type="string"  AllowNull="false"   />
+       <Property Name="QuestionId"  Type="string"  AllowNull="false"   />
+       <Property Name="CategoryId"   Type="string"  NullValue="" AllowNull="false"   />
+       <Property Name="Answer"  Type="int"    />
+       <Property Name="IsActive"  Type="bool"    />
+ </Entity>
+ 
+ <Entity Name="UserDevice" TableName="UserDevices" PartitionKeyProperty="UserId">
+     <RowKey Separator="_">
+             <KeyProperty  Property="DeviceId"  />
+     </RowKey>
+     <Property Name="UserId"  Type="string"  AllowNull="false"   />
+     <Property Name="DeviceId"   Type="string"   />
+    <Property Name="DeviceName"   Type="string"   />
+          	<Property Name="DeviceVersion"   Type="string"   />
+          	<Property Name="DevicePlatform"   Type="string"   />
+          	
+      	<Property Name="DevicePhGapVersion"   Type="string"   />
+ </Entity>
+ 
+ 
+<Entity Name="ErrorMapping" TableName="ErrorMappings" PartitionKeyProperty="Subsystem">
+    <RowKey Separator="_">
+            <KeyProperty  Property="ErrorCode"  />
+    </RowKey>
+    <Property Name="ErrorCode"  Type="string"  AllowNull="false"   />
+    <Property Name="Subsystem"  Type="string"  AllowNull="false"   />
+    <Property Name="ErrorMessage"  Type="string"  NullValue="" AllowNull="false"   />
+    <Property Name="UserError"  Type="bool"  NullValue="" AllowNull="false"   />
+    
+  </Entity>
+
+    <AttrStruct Name="CategoryScore">
+	<AttrStructProperty Name="CategoryId"   Type="string"   />
+	<AttrStructProperty Name="Score"   Type="int"   />
+     </AttrStruct>
+	
+  <AttrStruct Name="QuestionOptions">
+	<AttrStructProperty Name="Name"   Type="string"   />
+	<AttrStructProperty Name="Value"   Type="string"   />
+     </AttrStruct>
+     
+  <AttrStruct Name="DeviceInfo">
+  
+  	<AttrStructProperty Name="Name"   Type="string"   />
+  	<AttrStructProperty Name="Version"   Type="string"   />
+  	<AttrStructProperty Name="Platform"   Type="string"   />
+  	<AttrStructProperty Name="UUID"   Type="string"   />
+  	<AttrStructProperty Name="PhGapVersion"   Type="string"   />
+  	
+       </AttrStruct>
+  
+     
+ <AttrEnum Name="QuestionType">
+ 			<AttrEnumEl>Text</AttrEnumEl>
+ 			<AttrEnumEl>CheckBox</AttrEnumEl>
+ 			<AttrEnumEl>Select</AttrEnumEl>
+ 			<AttrEnumEl>MultiSelect</AttrEnumEl>
+ 			<AttrEnumEl>Radio</AttrEnumEl>
+ 			<AttrEnumEl>DropDown</AttrEnumEl>
+	</AttrEnum>
+	
+	 <AttrEnum Name="AppStateType">
+	 			<AttrEnumEl>NoState</AttrEnumEl>
+	 			<AttrEnumEl>AccountCreated</AttrEnumEl>
+	 			<AttrEnumEl>QuestionaireCompleted</AttrEnumEl>
+	 			<AttrEnumEl>AgeCheckComplete</AttrEnumEl>
+	 			<AttrEnumEl>PrefernceComplete</AttrEnumEl>
+	 			<AttrEnumEl>TCComplete</AttrEnumEl>
+	</AttrEnum>
+</EntityMap>

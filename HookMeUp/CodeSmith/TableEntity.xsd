@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema targetNamespace="http://www.codesmithtools.com/entitymap" elementFormDefault="qualified" xmlns="http://www.codesmithtools.com/entitymap" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cst="http://www.codesmithtools.com/XmlPropertyExtensions">
+    <!-- XmlProperty will use the last element tag that appears in the schema as the default root element type, but you can specify a RootElement attribute on the XmlProperty directive to override this behaviour. -->
+	<xs:element name="EntityMap">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Entity" type="Entity" minOccurs="1" maxOccurs="unbounded" cst:description="Name" cst:collectionName="TableEntities" />
+				<xs:element name="AttrStruct" type="AttrStruct" minOccurs="0" maxOccurs="unbounded" cst:description="Name" cst:collectionName="AttrStructs" />
+				<xs:element name="AttrEnum" type="AttrEnum" minOccurs="0" maxOccurs="unbounded" cst:description="Name" cst:collectionName="AttrEnum" />
+            </xs:sequence>
+            <xs:attribute name="Version" type="xs:string" use="required" />
+			<xs:attribute name="Namespace" type="xs:string" use="required" />
+        </xs:complexType>
+    </xs:element>
+	
+	<xs:complexType name="Entity" cst:description="Name" cst:collectionName="Entities">
+		<xs:sequence>
+		     <xs:element name="RowKey"  type="RowKey" minOccurs="1" maxOccurs="1" />
+			<xs:element name="Property" type="Property" minOccurs="1" maxOccurs="unbounded" />
+			<xs:element name="AdditionalQuery" type="AdditionalQuery" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="Name" use="required" type="xs:string" />
+		<xs:attribute name="TableName" use="optional" type="xs:string" />
+		<xs:attribute name="PartitionKeyProperty" use="required" type="xs:string" />
+	</xs:complexType>
+
+	<xs:complexType name="Property" cst:description="Name" cst:collectionName="MyProperties">
+        <xs:attribute name="Name" use="required" type="xs:string" />
+	    <xs:attribute name="LocalVarName" use="required" type="xs:string" />
+        <xs:attribute name="Type" use="required" type="xs:string" />	
+        <xs:attribute name="NullValue" use="optional" type="xs:string" />
+        <xs:attribute name="AllowNull" use="optional" type="xs:boolean" default="true" />
+		<xs:attribute name="isStruct" use="optional" type="xs:boolean" default="false" />
+		<xs:attribute name="isEnum" use="optional" type="xs:boolean" default="false" />
+		<xs:attribute name="isList" use="optional" type="xs:boolean" default="false" />
+		<xs:attribute name="isTransient" use="optional" type="xs:boolean" default="false" />
+		<xs:attribute name="isEncrypted" use="optional" type="xs:boolean" default="false" />
+		
+    </xs:complexType>
+	
+	<xs:complexType name="AttrStruct" cst:description="Name" cst:collectionName="AttrStructs">
+		<xs:sequence>
+			<xs:element name="AttrStructProperty" type="AttrStructProperty" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="Name" use="required" type="xs:string" />
+	</xs:complexType>
+	
+    <xs:complexType name="AttrStructProperty" cst:description="Name" cst:collectionName="MyStructs">
+        <xs:attribute name="Name" use="required" type="xs:string" />
+        <xs:attribute name="Type" use="required" type="xs:string" />	
+    </xs:complexType>
+	
+	<xs:complexType name="AttrEnum" cst:description="Name" cst:collectionName="AttrEnums">
+		<xs:sequence>
+			<xs:element name="AttrEnumEl" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="Name" use="required" type="xs:string" />
+	</xs:complexType>
+	
+	 <xs:complexType name="AdditionalQuery" cst:description="Name" cst:collectionName="MyAdditionalQueries">
+        <xs:sequence>
+		  <xs:element name="SelectionProperty" type="SelectionProperty" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="Name" use="required" type="xs:string" />
+	    <xs:attribute name="additionalclause" use="optional" type="xs:string" />	
+        <xs:attribute name="SingleReturn" use="optional" type="xs:boolean" default="true" />			
+    </xs:complexType>
+
+	<xs:complexType name="SelectionProperty" cst:description="Name" cst:collectionName="MySelections">
+        <xs:attribute name="PropertyName" use="required" type="xs:string" />
+        <xs:attribute name="ParamName" use="required" type="xs:string" />
+        <xs:attribute name="CompareSign" use="optional" default="=" type="xs:string" />	
+		<xs:attribute name="NextSelectionLogic" use="optional" default="" type="xs:string" />	
+    </xs:complexType>
+	
+	<xs:complexType name="RowKey" cst:description="Name" cst:collectionName="MyKeys">
+        <xs:sequence>
+		  <xs:element name="KeyProperty" type="KeyProperty" minOccurs="1" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="Separator" use="required" type="xs:string" />
+	</xs:complexType>
+	
+	<xs:complexType name="KeyProperty" cst:description="Name" cst:collectionName="MyProperties">
+        <xs:attribute name="Property" use="required" type="xs:string" />
+	    <xs:attribute name="Conversion" use="optional" type="xs:string" default=""  />
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,171 @@
+<%-- 
+Author: Vladimir Golos
+Description: Generates Azure table entity objects from an entity map file. 
+--%>
+<%@ CodeTemplate Language="C#" TargetLanguage="C#" Src="" Inherits="" Debug="True" CompilerVersion="v3.5" Description="" %>
+
+
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Assembly Name="System.Design" %>
+<%@ Assembly Name="System.Data" %>
+
+
+
+
+
+<%@ XmlProperty Name="EntityMap" Schema="TableEntity.xsd" Optional="True" Category="Context" %>
+
+using System;
+using System.Text;
+using Microsoft.WindowsAzure;
+using Microsoft.WindowsAzure.StorageClient;
+using System.Configuration;
+using System.Runtime.Serialization;
+
+
+namespace <%=EntityMap.Namespace%>
+{
+  
+	
+    public struct NextRecordInfo
+    {
+        public string NextPartition { get; set; }
+        public string NextKey { get; set; }
+    }
+	
+// Embeded attribute Enumerations	
+<%buildAtributeEnums();%>
+// Embeded attribute structs
+<%buildAtributeStructs();%>
+
+   public class EntityContext
+    {
+      protected  string TableName;
+      protected string ConfigurationName;
+      protected TableServiceContext servCtx;
+      protected CloudStorageAccount StorageAccount;
+      public static byte[] EncKey = { 123, 12, 23, 45, 72, 98, 211, 23 };
+       
+        public EntityContext(string p_TableName, string p_ConfigurationName)
+        {
+            TableName = p_TableName;
+            ConfigurationName = p_ConfigurationName;
+            StorageAccount = CloudStorageAccount.FromConfigurationSetting(p_ConfigurationName);
+            CloudTableClient TableClient = StorageAccount.CreateCloudTableClient();
+            TableClient.CreateTableIfNotExist(TableName);
+            servCtx = TableClient.GetDataServiceContext();
+
+        }
+
+        
+        public void SaveChangesWithRetries()
+        {
+             servCtx.SaveChangesWithRetries();
+        }
+
+       protected static string _defaultConfiguration;
+
+        public static string DefaultConfiguration
+        {
+            get
+            {
+                return _defaultConfiguration;
+            }
+            set
+            {
+                _defaultConfiguration = value;
+            }
+        }
+       protected Uri IdentityURI(string p_Partition, string p_Row)
+       {
+           return new Uri( String.Format("{0}{1}(PartitionKey='{2}',RowKey='{3}')", servCtx.BaseUri,TableName, p_Partition,p_Row));
+ 
+       }
+        
+		
+		
+		public static void  setForAppConfig()
+           {
+               CloudStorageAccount.SetConfigurationSettingPublisher( (configName, configSetter) =>  { configSetter(ConfigurationManager.AppSettings[configName]); } );
+           }
+   }
+}
+
+
+<script runat="template">
+
+
+
+
+public void buildAtributeStructs()
+{
+	Response.IndentLevel = 1;
+    foreach(AttrStruct atrstruct in EntityMap.AttrStructs)
+	{
+       GenAtributeStruct( atrstruct);
+	}
+}
+
+
+
+public void buildAtributeEnums()
+{
+	Response.IndentLevel = 1;
+    foreach(AttrEnum en in EntityMap.AttrEnums)
+	{
+       Response.WriteLine(String.Format("public enum {0} {{ {1} }}",en.Name, EnumList(en)));
+
+	}
+}
+
+
+
+
+public void GenAtributeStruct(AttrStruct atrstruct)
+{
+	Response.IndentLevel = 1;
+	Response.WriteLine("[Serializable]");
+    Response.WriteLine(String.Format("public class {0} {{",atrstruct.Name));
+	
+
+	
+	
+	foreach(AttrStructProperty property in atrstruct.AttrStructProperties)
+	{
+      Response.WriteLine(String.Format("public  {0,-9}\t{1,-25} {{ get; set; }}",  property.Type, property.Name));  	
+
+	}
+	    Response.WriteLine("}");
+		Response.WriteLine();
+
+}
+
+
+
+
+
+private string EnumList(AttrEnum en)
+{
+	string res = "";
+	bool first = true;
+	
+	foreach (string enel in en.AttrEnumEls)
+	
+	{ 
+		if (first)
+		  first = false;
+		else 
+		  res = res +", ";
+		
+		res = res + enel;
+		
+		}
+	return res;
+	
+	}
+
+
+
+
+
+</script> 

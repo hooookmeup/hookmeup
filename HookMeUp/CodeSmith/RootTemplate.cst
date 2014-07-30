@@ -1,0 +1,119 @@
+<%-- 
+Name: RootTemplate.cst
+Author: Vladimir Golos
+Description: Generates Azure table entity objects from an entity map file. 
+--%>
+
+<%@ CodeTemplate Language="C#" TargetLanguage="C#" Src="" Inherits="" Debug="True" OutputType="None" Description="Generates TableEntity Structs and context." %>
+<%@ XmlProperty Name="EntityMap" Schema="TableEntity.xsd"  Category="Context" Description="The entity map XML file." %>
+<%@ Assembly Name="System.Design" %>
+<%@ Import NameSpace="System.IO" %>
+
+<%@ Register Name="EntityStruct" Template="EntityStruct.cst" %>
+<%@ Register Name="EntityContext" Template="EntityContext.cst" %>
+<%@ Register Name="EntiyEmptyContext" Template="EntiyEmptyContext.cst" %>
+<%@ Register Name="EntityStructExternal" Template="EntityStructExternal.cst" %>
+<%@ Register Name="ContextBase" Template="ContextBase.cst" %>
+
+
+
+
+<script runat="template">
+private string _outputDirectory = String.Empty;
+
+[Editor(typeof(System.Windows.Forms.Design.FolderNameEditor), typeof(System.Drawing.Design.UITypeEditor))] 
+[Optional]
+[Category("Output")]
+[Description("The directory to output the results to.")]
+public string OutputDirectory 
+{
+	get
+	{
+		// default to the directory that the template is located in
+		if (_outputDirectory.Length == 0) return "";
+		
+		return _outputDirectory;
+	}
+	set
+	{
+		_outputDirectory = value;
+	}
+}
+
+
+
+
+
+public override void Render(TextWriter writer)
+{
+	// System.Diagnostics.Debugger.Break();
+	string outputDirectory = Path.Combine(this.CodeTemplateInfo.DirectoryName, _outputDirectory);
+	if (!outputDirectory.EndsWith("\\")) outputDirectory += "\\";
+	if (!Directory.Exists(outputDirectory)) 
+					Directory.CreateDirectory(outputDirectory);
+	
+	
+	
+	bool stringEnums = false;
+	//PreserveRegionsMergeStrategy strategy = new PreserveRegionsMergeStrategy("^[ \t]*(?i:Custom)","c#");
+	
+	
+      Trace.WriteLine("Generating ContextBase");
+	
+	
+	
+		ContextBase ContextBaseTemp = this.Create<ContextBase>();
+		ContextBaseTemp.EntityMap = EntityMap;
+		ContextBaseTemp.RenderToFile(outputDirectory + "EntityContext.cs", true);
+
+
+      Trace.WriteLine("Generating entities Struct" + "...");
+			
+	
+	foreach (Entity entity in EntityMap.Entities)
+	{
+		string enParentFile =  outputDirectory + entity.Name + ".cs";
+		string enChildName = outputDirectory + entity.Name + "InternalEntity.cs";
+
+		Trace.WriteLine("Generating entity Struct (" + entity.Name + ".cs" + ") for " + entity.Name + "...");
+		EntityStructExternal EntityStructExternalTemp = this.Create<EntityStructExternal>();
+	    EntityStructExternalTemp.EntityName = entity.Name;
+		EntityStructExternalTemp.StringEnums = stringEnums;
+		EntityStructExternalTemp.EntityMap = EntityMap;
+		// Use a preserve regions merge strategy to preserve all of the custom regions in our entity classes when they are re-generated.
+		EntityStructExternalTemp.RenderToFile(enParentFile, true);
+
+
+		Trace.WriteLine("Generating entity Struct (" + entity.Name + ".cs" + ") for " + entity.Name + "...");
+		EntityStruct EntityStructTemplate = this.Create<EntityStruct>();
+	    EntityStructTemplate.EntityName = entity.Name;
+		EntityStructTemplate.StringEnums = stringEnums;
+		EntityStructTemplate.EntityMap = EntityMap;
+		// Use a preserve regions merge strategy to preserve all of the custom regions in our entity classes when they are re-generated.
+		// EntityStructTemplate.RenderToFile(enParentFile, true);
+		EntityStructTemplate.RenderToFile(enChildName, enParentFile, true);
+		
+		string ParentFile =  outputDirectory + entity.Name + "Context.cs";
+		string ChildName = outputDirectory + entity.Name + "Context.Generated.cs";
+		if (!File.Exists(ParentFile))
+		{
+			Trace.WriteLine("Generating entity Context (" + entity.Name + "Context.cs" + ") for " + entity.Name + "...");
+			EntiyEmptyContext EntiyEmptyContextTemplate = this.Create<EntiyEmptyContext>();
+			EntiyEmptyContextTemplate.EntityName = entity.Name;
+			EntiyEmptyContextTemplate.EntityMap = EntityMap;
+			// Use a preserve regions merge strategy to preserve all of the custom regions in our entity classes when they are re-generated.
+			EntiyEmptyContextTemplate.RenderToFile(ParentFile, false);
+		}
+		
+	   	Trace.WriteLine("Generating entity Context (" + entity.Name + "Context.Generated.cs" + ") for " + entity.Name + "...");
+		EntityContext EntityContextTemplate = this.Create<EntityContext>();
+	    EntityContextTemplate.EntityName = entity.Name;
+		EntityContextTemplate.EntityMap = EntityMap;
+		// Use a preserve regions merge strategy to preserve all of the custom regions in our entity classes when they are re-generated.
+		EntityContextTemplate.RenderToFile(ChildName,ParentFile , true);
+	
+	}
+	Trace.WriteLine(" Done Generating entity structs");
+
+}
+</script>

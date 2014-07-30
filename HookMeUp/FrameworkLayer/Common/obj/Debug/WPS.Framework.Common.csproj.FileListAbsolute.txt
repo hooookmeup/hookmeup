@@ -1,0 +1,18 @@
+C:\isend\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\bin\Debug\WPS.Framework.Common.dll
+C:\isend\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\bin\Debug\WPS.Framework.Common.pdb
+C:\isend\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\bin\Debug\Microsoft.WindowsAzure.Diagnostics.dll
+C:\isend\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\bin\Debug\Microsoft.WindowsAzure.StorageClient.dll
+C:\isend\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\bin\Debug\opentoken-agent.dll
+C:\isend\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\bin\Debug\Microsoft.WindowsAzure.Diagnostics.xml
+C:\isend\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\obj\Debug\ResolveAssemblyReference.cache
+C:\isend\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\obj\Debug\WPS.Framework.Common.dll
+C:\isend\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\obj\Debug\WPS.Framework.Common.pdb
+C:\Users\ma041sa\Documents\Visual Studio 2010\Projects\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\bin\Debug\WPS.Framework.Common.dll
+C:\Users\ma041sa\Documents\Visual Studio 2010\Projects\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\bin\Debug\WPS.Framework.Common.pdb
+C:\Users\ma041sa\Documents\Visual Studio 2010\Projects\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\bin\Debug\Microsoft.WindowsAzure.Diagnostics.dll
+C:\Users\ma041sa\Documents\Visual Studio 2010\Projects\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\bin\Debug\Microsoft.WindowsAzure.StorageClient.dll
+C:\Users\ma041sa\Documents\Visual Studio 2010\Projects\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\bin\Debug\opentoken-agent.dll
+C:\Users\ma041sa\Documents\Visual Studio 2010\Projects\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\bin\Debug\Microsoft.WindowsAzure.Diagnostics.xml
+C:\Users\ma041sa\Documents\Visual Studio 2010\Projects\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\ma041sa\Documents\Visual Studio 2010\Projects\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\obj\Debug\WPS.Framework.Common.dll
+C:\Users\ma041sa\Documents\Visual Studio 2010\Projects\ma041sa_isend1.26_devview\EAPO_Dev\WebPostage\FrameworkLayer\Common\obj\Debug\WPS.Framework.Common.pdb

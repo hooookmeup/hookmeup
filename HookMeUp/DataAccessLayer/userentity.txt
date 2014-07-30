@@ -1,0 +1,3 @@
+ public string UserId { get { return _Users.RowKey; } set { _Users.RowKey = SimpleHash.GenerateHashKey(value); } }
+
+public string Password { get { return _Users.Password; } set { _Users.Password = SimpleHash.ComputeHash(value, "MD5", null); } }

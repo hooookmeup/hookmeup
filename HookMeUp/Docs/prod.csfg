@@ -1,0 +1,137 @@
+<ServiceConfiguration xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" serviceName="" osVersion="*" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration">
+  <Role name="WebPostage">
+    <ConfigurationSettings>
+      <Setting name="AddPostageMaxLimit" value="300" />
+      <Setting name="AddPostageMinLimit" value="10" />
+      <Setting name="AddressBookFileContainerName" value="addressbookfilescontainer" />
+      <Setting name="BaseUrl" value="https://isend.pb.com" />
+      <Setting name="Cache.AuthToken" value="YWNzOmh0dHBzOi8vcGJzbWFydHBvc3RhZ2VjYWNoZXByb2QtY2FjaGUuYWNjZXNzY29udHJvbC53aW5kb3dzLm5ldC9XUkFQdjAuOS8mb3duZXImeDI0MnpvbmQwb1pidHJ2RlBOZ3JxYkRXWXBiS2VHTlFjanBickYyWWxCTT0maHR0cDovL3Bic21hcnRwb3N0YWdlY2FjaGVwcm9kLmNhY2hlLndpbmRvd3MubmV0" />
+      <Setting name="Cache.Namespace" value="pbsmartpostagecacheprod.cache.windows.net" />
+      <Setting name="CreditPostageMinAllowedDay" value="30" />
+      <Setting name="CreditPostageMinLimit" value="0" />
+      <Setting name="DiagnosticsConnectionString" value="DefaultEndpointsProtocol=https;AccountName=pbisendproddb;AccountKey=TwXcpxFpAUU1DYNVGc2Kvt4Ga1RGE2EMMdKp9MTpz+KfwaZs2ktEEyAEyxI0si12UjXlcvioRBLDVHm/ssuS2A==" />
+      <Setting name="DomesticRateDynamicData" value="false" />
+      <Setting name="EAIService.FundPrepayAccountURL" value="https://webb2b.pb.com:7559/ws/WebPostage.ws:FundPrePayAccount" />
+      <Setting name="EAIService.GetCustomerProfileURL" value="https://webb2b.pb.com:7559/ws/WebPostage.ws:GetCustomerInfo" />
+      <Setting name="EAIService.Password" value="r6hx3k9b" />
+      <Setting name="EAIService.RetryCount" value="3" />
+      <Setting name="EAIService.RetryInterval" value="10000" />
+      <Setting name="EAIService.UsePrepayAccountURL" value="https://webb2b.pb.com:7559/ws/WebPostage.ws:UsePrePayAccount" />
+      <Setting name="EAIService.UserName" value="pwpegp" />
+      <Setting name="Email.EmailBaseUrl" value="https://ebm.cheetahmail.com" />
+      <Setting name="Email.UserName" value="ccapi2" />
+      <Setting name="Email.UserPassword" value="Ch33tah45" />
+      <Setting name="Email.UseStaging" value="false" />
+      <Setting name="Email.USPSTrackingLink" value="http://trkcnfrm1.smi.usps.com/PTSInternetWeb/InterLabelInquiry.do?CAMEFROM=OK&amp;strOrigTrackNum=" />
+      <Setting name="EnableInterNational" value="true" />
+      <Setting name="FileLocalStorage" value="AddressBookImportLocalStorage" />
+      <Setting name="FooterLink.ContactUs" value="http://www.pb.com/contact-us/" />
+      <Setting name="FooterLink.Legal" value="https://www.pb.com/legal/" />
+      <Setting name="FooterLink.PBHome" value="http://www.pb.com/" />
+      <Setting name="FooterLink.PrivacyStatement" value="https://www.pb.com/legal/privacy-statement.shtml" />
+      <Setting name="Fraud.CheckCustomerIP" value="true" />
+      <Setting name="Help.AddPostage" value="http://support.pb.com/ekip/index?page=content&amp;id=FAQ274" />
+      <Setting name="Help.AddressPage" value="http://support.pb.com/ekip/index?page=help&amp;id=HELP353&amp;cat=HELP_WP_MANAGE&amp;actp=LIST" />
+      <Setting name="Help.AutoPostageRefill" value="http://support.pb.com/ekip/index?page=help&amp;id=HELP963&amp;cat=HELP_WP_MANAGE&amp;actp=LIST&amp;locale=en_US" />
+      <Setting name="Help.CommercialDiscounts" value="http://support.pb.com/ekip/index?page=content&amp;id=FAQ332" />
+      <Setting name="Help.CreditCard" value="http://support.pb.com/ekip/index?page=content&amp;id=FAQ276" />
+      <Setting name="Help.DeliveryConfirmation" value="http://support.pb.com/ekip/index?page=content&amp;id=FAQ349" />
+      <Setting name="Help.FAQ" value="http://support.pb.com/ekip/index?page=faqs&amp;channel=X_FAQS&amp;cat=TOP_ISEND_FAQ" />
+      <Setting name="Help.GetStarted" value="http://support.pb.com/ekip/index?page=help&amp;id=HELP612&amp;cat=HELP_WP_HOME_PAGE&amp;actp=LIST" />
+      <Setting name="Help.HomePage" value="http://support.pb.com/ekip/index?page=help&amp;id=HELP339&amp;cat=HELP_WP_HOME_PAGE&amp;actp=LIST" />
+      <Setting name="Help.LabelPage" value="http://support.pb.com/ekip/index?page=help&amp;id=HELP340&amp;cat=HELP_WP_SHIP_PACKAGES&amp;actp=LIST" />
+      <Setting name="Help.Learning" value="http://www.pb.com/online-postage-stamps/learning-center/index.shtml" />
+      <Setting name="Help.More" value="http://support.pb.com/ekip/index?page=help&amp;channel=X_HELP&amp;cat=TOP_WEB_POSTAGE" />
+      <Setting name="Help.PrintPostage" value="http://support.pb.com/ekip/index?page=content&amp;id=FAQ247" />
+      <Setting name="Help.Refund" value="http://support.pb.com/ekip/index?page=help&amp;id=HELP354&amp;cat=HELP_WP_MANAGE&amp;actp=LIST" />
+      <Setting name="Help.Report" value="http://support.pb.com/ekip/index?page=help&amp;id=HELP357&amp;cat=HELP_WP_REPORTS&amp;actp=LIST" />
+      <Setting name="Help.ShipPackage" value="http://support.pb.com/ekip/index?page=content&amp;id=FAQ249" />
+      <Setting name="Help.SpoiledPostage" value="http://support.pb.com/ekip/index?page=help&amp;id=HELP537&amp;cat=HELP_WP_MANAGE&amp;actp=LIST" />
+      <Setting name="Help.StampPage" value="http://support.pb.com/ekip/index?page=help&amp;id=HELP348&amp;cat=HELP_WP_PRINT_STAMPS&amp;actp=LIST" />
+      <Setting name="Help.TrackPackage" value="http://support.pb.com/ekip/index?page=content&amp;id=FAQ250" />
+      <Setting name="InternationalItemLimit" value="30" />
+      <Setting name="IntlRateDynamicData" value="false" />
+      <Setting name="IOPService.DispenseRetryCount" value="3" />
+      <Setting name="IOPService.DispenseRetrySleepTime" value="10000" />
+      <Setting name="IOPService.DispenseService" value="https://ibdswebp.pb.com/iopgateway/iopgateway.svc" />
+      <Setting name="IOPService.RatesService" value="https://ibdsravp.pb.com/iopgateway/iopgateway.svc" />
+      <Setting name="IOPService.ScanDocService" value="https://ibdswebp.pb.com/EODScanForm/EODScanForm.svc" />
+      <Setting name="IOPService.TrackingService" value="https://ibdstrkp.pb.com/WebService/TrackingAPI.asmx" />
+      <Setting name="LocalDataStorage" value="UseDevelopmentStorage=true" />
+      <Setting name="LogLevel" value="Verbose" />
+      <Setting name="LogServiceTiming" value="true" />
+      <Setting name="LogServiceTimingThreshold" value="5" />
+      <Setting name="LogServiceXML" value="true" />
+      <Setting name="MiniFraud.BackUPServerUrl" value="https://minfraud1.maxmind.com/app/ccv2r" />
+      <Setting name="MiniFraud.LicenseKey" value="fFjLDMKrhd5N" />
+      <Setting name="MiniFraud.MaxDisableScore" value="100" />
+      <Setting name="MiniFraud.MaxReviewScore" value="50" />
+      <Setting name="MiniFraud.NumOfDaysForOldCustomers" value="175" />
+      <Setting name="MiniFraud.ServerUrl" value="https://minfraud2.maxmind.com/app/ccv2r" />
+      <Setting name="Partner.AccountID" value="54030374" />
+      <Setting name="Partner.ID" value="500033045" />
+      <Setting name="Partner.KeyFileLocation" value="500033045.key" />
+      <Setting name="Partner.PaymentAccountNumber" value="48627467" />
+      <Setting name="Partner.UserID" value="PWSG" />
+      <Setting name="Partner.UserName" value="PWSG" />
+      <Setting name="PerfCounterSampleRate" value="5" />
+      <Setting name="PerfCounterSpecifier" value="" />
+      <Setting name="Pref.IsAutoRefillEnabled" value="false" />
+      <Setting name="Pref.LowPostageRefillThreshold" value="25" />
+      <Setting name="Pref.PostageRefillAmount" value="50" />
+      <Setting name="Pref.RefillCostCenterNumber" value="No Account" />
+      <Setting name="Pref.ShouldNotifyForRefill" value="false" />
+      <Setting name="RemoteDataStorage" value="DefaultEndpointsProtocol=https;AccountName=pbisendproddb;AccountKey=TwXcpxFpAUU1DYNVGc2Kvt4Ga1RGE2EMMdKp9MTpz+KfwaZs2ktEEyAEyxI0si12UjXlcvioRBLDVHm/ssuS2A==" />
+      <Setting name="ScaleEnvelopeIndica" value="false" />
+      <Setting name="Sharp.EnableTracking" value="true" />
+      <Setting name="Sharp.EnableWave2" value="true" />
+      <Setting name="SSO.BuySuppliesPopup" value="true" />
+      <Setting name="SSO.BuySuppliesURL" value="https://www.pb.com/MyAccount/MachineLandingPage_11556_10555_-1_14708_14705_2038931_pbSmartPostage" />
+      <Setting name="SSO.DummyLogonURL" value="~/Login.aspx" />
+      <Setting name="SSO.ErrorReportURL" value="https://www.pb.com/MyAccount/PBSmartPostageErrorMsg?langId=-1&amp;storeId=11556" />
+      <Setting name="SSO.KeepAliveURL" value="https://www.pb.com/bv2was/external/heartbeat.jsp" />
+      <Setting name="SSO.MyccountPage" value="https://www.pb.com/bv2was/MyAccountHome.go?request_locale=en_US" />
+      <Setting name="SSO.OrderExpressMailSupplies" value="https://pb.com/MyAccount/PBSmartPostageSubscription?catalogId=10555&amp;langId=-1&amp;storeId=11556&amp;categoryId=6638&amp;partNumber_1=223-E&amp;quantity_1=3" />
+      <Setting name="SSO.PaymentMethods" value="https://www.pb.com/MyAccount/PPManagePostageView?langId=-1&amp;storeId=11556&amp;catalogId=10555" />
+      <Setting name="SSO.PingAgentFilePath" value="App_Data/agent-config.txt" />
+      <Setting name="SSO.PingSLODomainURL" value="https://sso.pb.com" />
+      <Setting name="SSO.PingSLOURL" value="https://sso.pb.com/idp/startSLO.ping?PartnerSpId=PBDotComWAS&amp;InErrorResource=https://www.pb.com/bv2was/ForceLogoff.go" />
+      <Setting name="SSO.PingSSOURL" value="https://sso.pb.com/idp/startSSO.ping?PartnerSpId=PBDotComWAS&amp;TargetResource=" />
+      <Setting name="SSO.PingSSOWASURL" value="https://sso.pb.com/idp/startSSO.ping?PartnerSpId=PBDotComWAS&amp;TargetResource=" />
+      <Setting name="SSO.ProfileURL" value="https://www.pb.com/MyAccount/ProfileInfoUpdateView?langId=-1&amp;storeId=11556&amp;catalogId=10555" />
+      <Setting name="SSO.ShopMailSupplies" value="https://imaqaws.pb.com/MyAccount/SubCategoryDisplay_11556_10555_-1_24695__25180" />
+      <Setting name="SSO.Subscriptions" value="https://www.pb.com/MyAccount/PBSmartPostageManageSubscriptionPageView?langId=-1&amp;storeId=11556&amp;catalogId=10555" />
+      <Setting name="StampBetaMaximumSheetNumber" value="111000" />
+      <Setting name="WPS.CallInNumber" value="1-877-822-0996" />
+      <Setting name="WPS.EmailLink" value="http://www.pb.com/forms/Contact-Us-About-pbSmartPostage.shtml" />
+      <Setting name="WPS.EnableRollOfStamps" value="false" />
+      <Setting name="WPS.HoursOfOperation" value="Mon-Fri 8am-8pm ET" />
+      <Setting name="WPS.isNova" value="true" />
+      <Setting name="WPS.LearningCenterLink" value="http://www.pb.com/online-postage-stamps/learning-center/index.shtml" />
+      <Setting name="WPS.MaintenanceEnable" value="false" />
+      <Setting name="WPS.MaintenanceUrl" value="http://maintenance.pb.com/pbcom/maintenance.html" />
+      <Setting name="WPS.NovaRedirectLink" value="https://pbwebconnect.pb.com/NOVA-HOME-WEBAPP-1.0/NovaHome.html" />
+      <Setting name="WPS.RefundBacklog" value="false" />
+      <Setting name="WPS.StampsOnlyUpgradeUrl" value="https://www.pb.com/MyAccount/PBSmartPostageSubscription?catalogId=10555&amp;langId=-1&amp;storeId=11556&amp;partNumber_1=PTU1&amp;quantity_1=1&amp;frmMktPg=SAAS&amp;Contract_Type=Upgrade" />
+      <Setting name="WPS.VerisignCName" value="isend.pb.com" />
+      <Setting name="UserDataStorageMode" value="Local" />
+      <Setting name="IsSecurity" value="true" />
+      <Setting name="SSLgetFileMetaByFileId" value="https://cds.pbondemand.com:443/CDS/resources/fileservice/appname/CDS_PBSP/getfilemeta/xml/fileid/48" />
+      <Setting name="SSLSaveFile" value="https://cds.pbondemand.com:443/CDS/resources/fileservice/appname/CDS_PBSP/savefile/uniqueid/{0}/filename/{1}" />
+      <Setting name="SSLgetFilesMetaByUniqueId" value="https://cds.pbondemand.com:443/CDS/resources/fileservice/appname/CDS_PBSP/getmultiplefilemeta/xml/uniqueid/{0}" />
+      <Setting name="SSLgetFileMetaByUniqueId" value="https://cds.pbondemand.com:443/CDS/resources/fileservice/appname/CDS_PBSP/getfilemeta/xml/uniqueid/{0}/filename/{1}" />
+      <Setting name="SSLgetFileByFileId" value="https://cds.pbondemand.com:443/CDS/resources/appname/CDS_PBSP/fileservice/getfile/fileid/{0}" />
+      <Setting name="SSLgetFileByUniqueId" value="https://cds.pbondemand.com:443/CDS/resources/fileservice/appname/CDS_PBSP/getfile/uniqueid/{0}/filename/{1}" />
+      <Setting name="SSLDeleteFile" value="https://cds.pbondemand.com:443/CDS/resources/fileservice/appname/CDS_PBSP/delete/uniqueid/{0}/filename/{1}" />
+      <Setting name="Pref.AddressFromCustReq" value="false" />
+      <Setting name="Help.Prefrences" value="http://support.pb.com/ekip/index?page=help&amp;id=HELP972&amp;cat=HELP_WP_MANAGE&amp;actp=LIST&amp;locale=en_US" />
+    </ConfigurationSettings>
+    <Instances count="2" />
+    <Certificates>
+      <Certificate name="Public" thumbprint="A1DB6393916F17E4185509400415C70240B0AE6B" thumbprintAlgorithm="sha1" />
+      <Certificate name="Root" thumbprint="32F30882622B87CF8856C63DB873DF0853B4DD27" thumbprintAlgorithm="sha1" />
+      <Certificate name="WPSSLCert" thumbprint="7743AF5143DDD85FBFB948456B6C84DDDE2DAF1E" thumbprintAlgorithm="sha1" />
+      <Certificate name="CDSCert" thumbprint="C5992B292DF31260B7AB5520871C6AAF4AD501A0" thumbprintAlgorithm="sha1" />
+    </Certificates>
+  </Role>
+</ServiceConfiguration>

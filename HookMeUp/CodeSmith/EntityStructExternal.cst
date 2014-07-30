@@ -1,0 +1,271 @@
+<%-- 
+Name: RootTemplate.cst
+Author: Vladimir Golos
+Description: Generates Azure table entity objects from an entity map file. 
+--%>
+<%@ CodeTemplate Language="C#" TargetLanguage="C#" Src="CommonTemplate.cs" Inherits="CommonTemplate" Debug="False" CompilerVersion="v3.5" Description="" %>
+
+
+<%@ Assembly Name="SchemaExplorer" %>
+<%@ Assembly Name="System.Design" %>
+<%@ Assembly Name="System.Data" %>
+
+
+
+
+
+<%@ XmlProperty Name="EntityMap" Schema="TableEntity.xsd" Optional="True" Category="Context" %>
+<%bulidGenerateHeader();%>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Microsoft.WindowsAzure.StorageClient;
+using System.Globalization;
+using System.IO;
+using System.Runtime.Serialization.Json;
+using SS.Framework.Common;
+
+namespace <%= EntityMap.Namespace%>
+{
+    public class  <%= CurrentEntity.Name %> 
+	
+    {
+    
+		 <%= CurrentEntity.TableName %> _<%= CurrentEntity.TableName %>;
+		
+		public  <%= CurrentEntity.Name %>( <%= CurrentEntity.TableName %> Par)
+        {
+			_<%= CurrentEntity.TableName %> = Par;
+        }
+		public  <%= CurrentEntity.Name %>( )
+        {
+			_<%= CurrentEntity.TableName %> = new <%= CurrentEntity.TableName %> ();
+        }
+		
+		public string RowKey  
+		{
+			get 
+			{
+				return _<%= CurrentEntity.TableName %>.RowKey;
+			}
+		}
+       <%   buildGettersAndSetters();%>
+
+		
+		public <%= CurrentEntity.TableName %> InternalEntity 
+		{ get
+		  {
+			return _<%= CurrentEntity.TableName %>;
+		  }
+		}
+
+    }    
+
+ }
+
+<script runat="template">
+
+private string InternalSufix="Internal";
+private Entity _entityElement = null;
+
+[Browsable(false)]
+public Entity CurrentEntity
+{
+	get {return _entityElement;}
+	set {_entityElement = value;}
+}
+
+
+
+protected override void OnPreRender()
+{
+	//System.Diagnostics.Debugger.Break();
+	// if this template is called directly, then we need to set the EntityElement property using the name of the target entity.
+	if (CurrentEntity == null) 	
+		CurrentEntity = FindEntityByName( EntityName);
+		else
+		  EntityName = CurrentEntity.Name;
+	if (CurrentEntity == null) 
+	      throw new ApplicationException("You must either pass in an EntityElement object from a parent template or set the name of the entity.");
+	
+	base.OnPreRender();
+}
+
+
+public Entity FindEntityByName(string entityName)
+{
+	Entity result = null;
+	if (EntityName != null && EntityName.Length > 0)
+	{
+		for (int i = 0; i < EntityMap.Entities.Count; i++)
+		{
+			if (EntityMap.Entities[i].Name == EntityName)
+			{
+				result = EntityMap.Entities[i];
+				break;
+			}
+		}
+	}
+	return result;
+}
+
+   
+ 
+public void buildGettersAndSetters()
+{
+	
+
+	Response.IndentLevel = 2;
+    foreach(Property property in CurrentEntity.Properties)
+	{
+		
+      Response.WriteLine("/// <summary>");
+      Response.WriteLine("/// Gets or sets the "+property.Name+" Property value.");
+      Response.WriteLine("/// </summary>");
+  if (property.Name !=  CurrentEntity.PartitionKeyProperty)	
+
+	  {
+	 if ( property.isEnum  )
+	    {
+			if (StringEnums )
+			   Response.WriteLine(String.Format("public  {0,-9}\t{1,-25} {{get{{ return ({0})Enum.Parse(typeof({0}), _{2}.{1},true); ;}} set{{ _{2}.{1}= value.ToString();}}}}",  property.Type , property.Name,   CurrentEntity.TableName));  	
+			else
+		       Response.WriteLine(String.Format("public  {0,-9}\t{1,-25} {{get{{ return ({0})Enum.ToObject(typeof({0}), _{2}.{1}); ;}} set{{ _{2}.{1}=(int) value;}}}}",  property.Type , property.Name,   CurrentEntity.TableName));  	
+		}
+		else
+		{
+	 if ( property.isStruct  )
+	    generateStractGetSet(property);
+		
+	 else
+	    {
+			if ( SingleRowKey(property ))
+				Response.WriteLine(String.Format("public  {0,-9}\t{1,-25} {{ get {{ return _{2}.RowKey; }} set {{ _{2}.RowKey = value; }} }}",  property.Type, property.Name, CurrentEntity.TableName));  	
+			else
+			{
+				if (property.isTransient)
+				
+			     Response.WriteLine(String.Format("public  {0,-9}\t{1,-25} {{get; set;}}",  property.Type, property.Name, CurrentEntity.TableName));  	
+				else
+				{
+				if (property.isEncrypted && property.Type =="string")
+				
+					Response.WriteLine(String.Format("public  {0,-9}\t{1,-25} {{ get {{ return   Utility.DecryptString(_{2}.{1}, EntityContext.EncKey); }} set {{ _{2}.{1} = Utility.EncryptString(value, EntityContext.EncKey); }} }}",  property.Type, property.Name, CurrentEntity.TableName));  	
+				else
+			      Response.WriteLine(String.Format("public  {0,-9}\t{1,-25} {{ get {{ return _{2}.{1}; }} set {{ _{2}.{1} = value; }} }}",  property.Type, property.Name, CurrentEntity.TableName));  	
+				}
+	     	}
+		}
+	}
+		}
+	  else
+      Response.WriteLine(String.Format("public  {0,-9}\t{1,-25} {{ get {{ return _{2}.PartitionKey; }} set {{ _{2}.PartitionKey = value; }} }}",  property.Type, property.Name, CurrentEntity.TableName));  	
+	  Response.WriteLine();
+	}
+	
+	Response.IndentLevel = 0;
+}
+
+private Property GetByName(string propertyName)
+{
+	Property rez = null;
+	foreach(Property property in CurrentEntity.Properties)
+	{
+		if (property.Name==propertyName)
+		{
+			rez = property;
+			break;
+			}
+	}
+	return rez;
+}
+
+public string construstorParam()
+{
+	string res ="";
+	Property property = GetByName(CurrentEntity.PartitionKeyProperty);
+	if (property != null)
+	 res= property.Type+ " " + property.Name; 
+     
+	foreach(  KeyProperty kp in CurrentEntity.RowKey.KeyProperties)
+	{
+		
+	 property = GetByName(kp.Property);
+	if (property != null)
+	 res= res+", "+property.Type+ " " + property.Name; 
+	}
+	Trace.WriteLine(res);	
+	return res;
+		
+
+}
+
+public string KeyCombination()
+{
+	string res ="";
+	bool first = true;
+	foreach(  KeyProperty kp in CurrentEntity.RowKey.KeyProperties)
+	{
+		if (first)
+		  first = false;
+		else
+		  res= res+ "+\""+CurrentEntity.RowKey.Separator+"\"+";
+	  res= res+kp.Property+kp.Conversion; 
+	Trace.WriteLine(kp.Property+"          conv"+kp.Conversion);
+	}
+	Trace.WriteLine(res);	
+	return res;
+		
+
+}
+
+public void	    generateStractGetSet(Property property)
+{
+	
+	 string strFormat =@"public {0} {1}
+        {{
+            get
+            {{
+                {0} serv  = null;
+                if (!string.IsNullOrEmpty(_{2}.{1}))
+                {{
+					MemoryStream ms = new MemoryStream(Encoding.ASCII.GetBytes(_{2}.{1}));
+    	            DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof({0}));
+        	        serv = serializer.ReadObject(ms) as {0};
+				}}
+                return serv;
+								
+            }}
+            set
+            {{
+			 	if (value != null)
+                {{
+                	 MemoryStream ms = new MemoryStream();
+                	/// Serialize to JSON
+                	DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof({0}));
+                	serializer.WriteObject(ms, value);
+                	ms.Position = 0;
+                	using (StreamReader reader = new StreamReader(ms))
+                  	 _{2}.{1} = reader.ReadToEnd();
+                	ms.Close();
+				}}
+				 else
+				   _{2}.{1} = null;
+            }}
+        }}";
+		
+	Response.WriteLine(String.Format(strFormat,  property.Type, property.Name, CurrentEntity.TableName ));  	
+
+}
+
+
+public bool SingleRowKey(Property prop)
+{ 
+	
+	 return( CurrentEntity.RowKey.KeyProperties.Count==1 && CurrentEntity.RowKey.KeyProperties[0].Property == prop.Name );
+	   
+}
+
+
+</script>

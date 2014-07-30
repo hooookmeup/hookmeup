@@ -1,0 +1,5 @@
+C:\Users\ma041sa\documents\visual studio 2012\EAPO_Build\bin\WPS.DS.dll
+C:\Users\ma041sa\documents\visual studio 2012\EAPO_Build\bin\WPS.DS.pdb
+C:\Users\ma041sa\documents\visual studio 2012\Projects\HookMeUp\DataAccessLayer\AzureTableStorage\obj\Release\SS.DL.AzureTableStorage.csprojResolveAssemblyReference.cache
+C:\Users\ma041sa\documents\visual studio 2012\Projects\HookMeUp\DataAccessLayer\AzureTableStorage\obj\Release\WPS.DS.dll
+C:\Users\ma041sa\documents\visual studio 2012\Projects\HookMeUp\DataAccessLayer\AzureTableStorage\obj\Release\WPS.DS.pdb

@@ -1,0 +1,11 @@
+So you do understand why I designed the tables the way I did right? I just did it to 1. to get the data required to draw the UI for the questions part
+
+2. To store the data for the Location based stuff
+
+3. To store data for Ads etc. based on usage
+
+and 4. to help International
+
+So if we are able to do this with any other DB design, I am good.
+
+It does not have to be done in this way only. As long as we can is the need
