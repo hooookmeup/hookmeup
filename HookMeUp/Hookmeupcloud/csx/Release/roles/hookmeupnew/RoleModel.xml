@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RoleModel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="hookmeupnew" version="1.8.31351.1533" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceDefinition">
+  <Runtime>
+    <EntryPoint>
+      <NetFxEntryPoint assemblyName="hookmeupnew.dll" targetFrameworkVersion="v3.5" />
+    </EntryPoint>
+  </Runtime>
+  <Properties>
+    <Property name="TargetFrameworkVersion" value="v4.5" />
+    <Property name="RoleType" value="Web" />
+    <Property name="RoleName" value="hookmeupnew" />
+    <Property name="ProjectName" value="hookmeupnew" />
+    <Property name="Configuration" value="Release" />
+    <Property name="Platform" value="AnyCPU" />
+    <Property name="RoleTargetFramework" value="v4.5" />
+    <Property name="OutputDir" value="C:\Users\ma041sa\Documents\Visual Studio 2012\Projects\HookMeUp\Hookmeupcloud\obj\Release\hookmeupnew\" />
+    <Property name="EntryPoint" value="hookmeupnew.dll" />
+    <Property name="SourceDir" value="C:\Users\ma041sa\Documents\Visual Studio 2012\Projects\HookMeUp\hookmeupnew\" />
+    <Property name="SitePhysicalPath" value="C:\Users\ma041sa\Documents\Visual Studio 2012\Projects\HookMeUp\Hookmeupcloud\obj\Release\hookmeupnew\" />
+    <Property name="TargetRuntimeVersion" value="v4.0" />
+  </Properties>
+  <Sites>
+    <Site name="Web" physicalDirectory="C:\Users\ma041sa\Documents\Visual Studio 2012\Projects\HookMeUp\Hookmeupcloud\obj\Release\hookmeupnew\">
+      <Bindings>
+        <Binding name="HttpIn" endpointName="HttpIn" />
+      </Bindings>
+    </Site>
+  </Sites>
+</RoleModel>

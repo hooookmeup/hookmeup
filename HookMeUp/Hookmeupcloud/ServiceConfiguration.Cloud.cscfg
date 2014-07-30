@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceConfiguration serviceName="Hookmeupcloud" xmlns="http://schemas.microsoft.com/ServiceHosting/2008/10/ServiceConfiguration" osFamily="3" osVersion="*" schemaVersion="2014-01.2.3">
+  <Role name="hookmeupnew">
+    <Instances count="1" />
+    <ConfigurationSettings>
+      <!--<Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="UseDevelopmentStorage=true" />-->
+      <Setting name="RemoteDataStorage" value="DefaultEndpointsProtocol=https;AccountName=hookmeupdb;AccountKey=7GrhSo7MvG3wVl1xjEhdHhnCUuct5nX/UKM068ZViuQ3cQEzUuYubg+o4yWKBwSYHb+2cQuA3Yef/i3GzlkjxA==" />
+      <Setting name="LogLevel" value="Verbose" />
+      <Setting name="PerfCounterSpecifier" value="" />
+      <Setting name="PerfCounterSampleRate" value="5" />
+      <!--<Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.Enabled" value="true" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountUsername" value="manusarin" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountEncryptedPassword" value="MIIBnQYJKoZIhvcNAQcDoIIBjjCCAYoCAQAxggFOMIIBSgIBADAyMB4xHDAaBgNVBAMME1dpbmRvd3MgQXp1cmUgVG9vbHMCEDcWE442bZCSS4hE+yZcMggwDQYJKoZIhvcNAQEBBQAEggEAWxfxR5zky27p/8jug138+3UMoPF1uBgwVsdV9HoYQUx+wtliZ8jgPMC2XbmrSxkBtMtX8Fj/a8T6dYmRSdDZGKlqLfVCkH8BqnZUbuuxpNNGzjfr8LuvD1BviSjNoRyDp+YpoJg8HMQ0NLuF3a/2sv+fKHT4tVnW6H43tZ3CQl9Eu5IgIcDuPPSzQC9hV/VE57k96Ie/rEysi3gMBUWv+wzs9MEVqqRK7hQfUaDAz/V8EJ/GVUTK+RWtQbsc9rvoh/vyO7M7y0qHYaFXp2jxuacBJ+VTE95j8GiGukYnYElh5u0VyY4GfV91O2/E4dXFdny1OxEuFqQw3uCVmdP2mTAzBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECMvz/AwtgC8TgBBLwpN/l8SxgkygDHLbY0RL" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteAccess.AccountExpiration" value="2014-05-23T23:59:59.0000000-04:00" />
+      <Setting name="Microsoft.WindowsAzure.Plugins.RemoteForwarder.Enabled" value="true" />-->
+      <Setting name="OfflineSchedulerInterval" value="5" />
+      <!--<Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="" />-->
+      <!--<Setting name="Microsoft.WindowsAzure.Plugins.Diagnostics.ConnectionString" value="" />-->
+    </ConfigurationSettings>
+    <Certificates>
+      <!--<Certificate name="Microsoft.WindowsAzure.Plugins.RemoteAccess.PasswordEncryption" thumbprint="A9ABAE5E60B0DCE87EF30A691D74E7BBD17BC7E7" thumbprintAlgorithm="sha1" />-->
+    </Certificates>
+  </Role>
+</ServiceConfiguration>
