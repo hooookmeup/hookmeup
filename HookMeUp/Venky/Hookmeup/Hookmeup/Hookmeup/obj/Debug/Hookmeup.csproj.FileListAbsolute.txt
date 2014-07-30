@@ -1,0 +1,9 @@
+c:\users\ve505pa\documents\visual studio 2012\Projects\Hookmeup\Hookmeup\bin\Hookmeup.dll
+c:\users\ve505pa\documents\visual studio 2012\Projects\Hookmeup\Hookmeup\bin\Hookmeup.pdb
+c:\users\ve505pa\documents\visual studio 2012\Projects\Hookmeup\Hookmeup\obj\Debug\Hookmeup.dll
+c:\users\ve505pa\documents\visual studio 2012\Projects\Hookmeup\Hookmeup\obj\Debug\Hookmeup.pdb
+C:\Users\ma041sa\Documents\Visual Studio 2012\Projects\HookMeUp\Venky\Hookmeup\Hookmeup\Hookmeup\bin\Hookmeup.dll
+C:\Users\ma041sa\Documents\Visual Studio 2012\Projects\HookMeUp\Venky\Hookmeup\Hookmeup\Hookmeup\bin\Hookmeup.pdb
+C:\Users\ma041sa\Documents\Visual Studio 2012\Projects\HookMeUp\Venky\Hookmeup\Hookmeup\Hookmeup\obj\Debug\Hookmeup.csprojResolveAssemblyReference.cache
+C:\Users\ma041sa\Documents\Visual Studio 2012\Projects\HookMeUp\Venky\Hookmeup\Hookmeup\Hookmeup\obj\Debug\Hookmeup.dll
+C:\Users\ma041sa\Documents\Visual Studio 2012\Projects\HookMeUp\Venky\Hookmeup\Hookmeup\Hookmeup\obj\Debug\Hookmeup.pdb

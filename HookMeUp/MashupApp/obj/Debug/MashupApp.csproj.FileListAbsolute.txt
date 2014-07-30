@@ -1,0 +1,5 @@
+C:\Users\ma041sa\Documents\Visual Studio 2012\Implementing CORS support in ASP.NET Web APIs\C#\MashupApp\bin\MashupApp.dll
+C:\Users\ma041sa\Documents\Visual Studio 2012\Implementing CORS support in ASP.NET Web APIs\C#\MashupApp\bin\MashupApp.pdb
+C:\Users\ma041sa\Documents\Visual Studio 2012\Implementing CORS support in ASP.NET Web APIs\C#\MashupApp\obj\Debug\MashupApp.csprojResolveAssemblyReference.cache
+C:\Users\ma041sa\Documents\Visual Studio 2012\Implementing CORS support in ASP.NET Web APIs\C#\MashupApp\obj\Debug\MashupApp.dll
+C:\Users\ma041sa\Documents\Visual Studio 2012\Implementing CORS support in ASP.NET Web APIs\C#\MashupApp\obj\Debug\MashupApp.pdb

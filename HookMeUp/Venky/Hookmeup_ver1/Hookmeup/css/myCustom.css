@@ -1,0 +1,118 @@
+#main {
+    background-image: url(img/background_green.png);
+
+}
+
+
+#page-map, #map-content, #map_canvas {
+    width:100%;
+    height:100%;
+    padding: 0;
+}
+
+#map_canvas { 
+	min-height: 100%; 
+	}
+
+#googleMap {
+    min-height:480px;
+    min-width:320px;
+    max-height:100%;
+    max-width:100%;
+}
+#updateProfile {
+    background-image: url(img/background_green.png);
+}
+#dialogPage {
+    background-color:white;
+}
+#reg1 {
+    background-color:white;
+    padding:10px 20px;
+}
+#exp1 {
+    font-family: Helvetica, Arial, sans-serif;
+}
+#three {
+    background-color:white;
+}
+.ui-grid-a label, .ui-grid-a input {
+  display:inline-block;
+}
+
+.ui-grid-a label {
+  width:150px; /* or whatever size you want them */
+}
+.ui-grid-a input label {
+  width:200px; /* or whatever size you want them */
+}
+#profile1 {
+    background-color:white;
+    padding:10px 20px;
+}
+#ProfileExp {
+    font-family: Helvetica, Arial, sans-serif;
+}
+#profiletable {
+    background-color:lightgray;
+}
+#h2header {
+    font-style:italic;
+}
+#AgeAgree {
+    font-size:11px;
+    font-weight:bold;
+}
+#tsandcs {
+    font-size:11px;
+    font-weight:bold;
+}
+#tandc {
+    max-height:400px;
+}
+label.error {
+    color: red;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.4;
+    margin-top: 0.5em;
+    width: 100%;
+    float: none;
+}
+#loginForm label.error {
+  background:url("/images/unchecked.gif") no-repeat 0px 0px;
+  padding-left: 0px;
+  padding-bottom: 0px;
+  font-weight: bold;
+  color: #EA5200;
+  display: inline;
+}
+
+#signupform label.checked {
+  background:url("/images/checked.gif") no-repeat 0px 0px;
+}
+.ui-dialog-background {
+    opacity: 0.5;
+    display: block !important;
+    -webkit-transition: opacity 0.5s ease-in;
+}
+
+.ui-dialog-background.pop.in {
+    opacity: 1;
+    -webkit-transition: opacity 0.5s ease-in;
+}
+
+.ui-dialog {
+    min-height: 100% !important;
+    background: transparent !important;
+}
+
+@media screen and (orientation: portrait){
+    label.error { margin-left: 0; display: block; }
+}
+
+@media screen and (orientation: landscape){
+    label.error { display: inline-block; margin-left: 22%; }
+}
+
+em { color: red; font-weight: bold; padding-right: .25em; }

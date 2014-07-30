@@ -1,0 +1,342 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+
+    <title>Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <link href="css/f_red.css" rel="stylesheet" />
+    <link href="jquery.mobile/jquery.mobile-1.3.0.css" rel="stylesheet" />
+    <link href="css/myCustom.css" rel="stylesheet" />
+    <script type="text/javascript" src="jquery.mobile/jquery-1.7.2.min.js"></script>
+    <script  type="text/javascript" src="jquery.mobile/jquery.mobile-1.3.0.js"></script>
+<!--     <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> -->
+	<script type="text/javascript" src="jquery.ui.map/jquery.ui.map.js"></script>
+ 	<script type="text/javascript" src="jquery.ui.map/jquery.ui.map.services.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8CgXKIKTV3AcyS3kzXxUHIWFXcCz5x18&sensor=false"></script>
+    <script type="text/javascript" src="js/jquery.phono.min.js"></script>
+    <script type="text/javascript"  src="js/index.js"></script>
+    <script type="text/javascript"  src="js/mymap.js"></script>
+    <script type="text/javascript"  src="js/myChat.js"></script>
+    <script type="text/javascript" src="js/minmap.js"></script>
+	<!-- Uncomment following line to access PhoneGap APIs (not necessary to use PhoneGap to package web app) -->
+	 <script type="text/javascript" charset="utf-8" src="js/cordova-2.5.0.js"></script>
+     <script type="text/javascript" charset="utf-8" src="js/userservice.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery.iecors.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/jquery.validate.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/uiValidation.js"></script>
+
+	<!-- CDN Respositories: For production, replace lines above with these uncommented minified versions -->
+	<!-- <link rel="stylesheet" href="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.css" />-->
+	<!-- <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>-->
+	<!-- <script src="http://code.jquery.com/mobile/1.1.0/jquery.mobile-1.1.0.min.js"></script>-->
+	</head>
+<body id="main" onload="onLoad();">
+    <div data-role="page" data-fullscreen="true" id="firstPage" style="background-image: url('css/img/FirstPageBackground.png'); background-attachment:fixed; background-repeat:no-repeat; background-size: 100% 100%;">
+        <div data-role="content"></div>
+    </div>
+            <!-- This is the login Dialog -->
+            <div data-role="dialog" id="dialogPage" data-close-btn="none" hidden>
+                <div data-role="content">
+                     <form id="loginForm" class="validate">
+                        <div style="padding: 10px 20px;">
+                            <h2>Please sign in: </h2>
+                            <!--<label for="un" class="ui-hidden-accessible">Username:</label> -->
+                            <input type="email" name="username" id="username" value="" placeholder="username" data-theme="a" required>
+                            <!-- <label for="pw" class="ui-hidden-accessible">Password:</label> -->
+                            <input type="password" name="password" id="password" value="" placeholder="password" data-theme="a" pattern="[^\s]{4}[^\s]*" required>
+                            <button id="submitButton" type="submit" class="ui-submit" data-theme="b" data-icon="check">Sign in</button>
+                            <br />
+                        </div>
+                    </form>
+                    <div style="border: groove thick; padding: 10px 5px; color: black;">
+                        <h3>New to Hook up?</h3>
+                        <button id="btnnewUser" type="button" class="ui-submit" data-theme="f" data-icon="info" data-inline="true">Sign up Now!</button>
+                        <label data-inline="true">It only takes a few minutes.</label>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Start of Home page: #Home This is the page the user will land on after successful login-->
+                           
+			<div data-role="page" data-theme="c" data-fullscreen="true" id="page-map">
+            <div data-theme="a" data-role="header" data-position="fixed" role="banner"> 
+                <h3 data-cid="heading5" role="heading">Hookmeup</h3>
+                <a data-role="button" data-inline="true" data-theme="a" href="#popupMenu" data-rel="popup" data-icon="gear" data-iconpos="notext" class="ui-btn-right" data-cid="button1" data-corners="true" data-shadow="true" data-iconshadow="true" data-wrapperels="span" title="">
+                </a>
+                    <div data-role="popup" id="popupMenu" data-theme="d">
+                        <ul data-role="listview" data-inset="true" style="min-width:100px;" data-theme="a">
+                            <li data-icon="grid" data-iconpos="left" data-theme="b"><a href="#changePW">Options</a></li>
+                            <li data-icon="home" data-iconpos="left" data-theme="f"><a id="btnlogout">Logout</a></li>
+                        </ul>
+                    </div>
+            </div>
+				<div data-role="content" id="map-content">
+					<div id="map_canvas"></div>
+				</div>
+				
+                <!-- /Home page content End-->
+
+            </div>
+            <!-- /page Home end -->
+
+
+            <!-- Start of New User Registration Flow Page 1 -->
+            <!-- User chooses User Name and password and agrees to T's and C's -->
+            <div data-role="dialog" id="registration" data-close-btn="none">
+
+                <div data-role="header">
+                    <h1>Registration</h1>
+                </div>
+                <!-- /header -->
+
+                <div data-role="content" data-theme="b">
+                    <form id="newuserreg" class="register">
+                    
+                        <div data-theme="b">
+                            <p>
+                                <input name="txt_newUserReg_Name" id="newUserReg_Name" value="" data-inline="true" type="email" placeholder="Enter User Name" title="Enter a valid e-mail ID or your Cell Phone number" required>
+                            </p>
+                            <p>
+                                <input name="txt_newUserReg_Passwd" id="newUserReg_Passwd" value="" data-inline="true" type="password" placeholder="Enter Password" title="Password must be 8 Char long with numbers and characters" required>
+                            </p>
+                            <p>
+                                <input name="txt_newUserReg_RePasswd" id="newUserReg_RePasswd" value="" data-inline="true" type="password" placeholder="Re-Enter Password" title="Password must match the one entered above" required>
+                            </p>
+                            <div data-role="fieldcontain">
+                                    <fieldset data-mini="true" data-role="controlgroup">
+                                        <legend id="AgeAgree">Age Restriction: </legend>
+                                    <input name="chkageagree" type="checkbox" data-theme="d" id="chkageagree" class="custom"/>
+                                    <label for="chkageagree">I am 18 yrs or older</label>
+                                   </fieldset>
+                                
+                                    <fieldset data-inline="true" data-mini="true" data-role="controlgroup">
+                                        <legend id="tsandcs"><a href="#termsandconditions" data-theme="d">T's & C's :</a></legend>
+                                        <input name="chktandc" type="checkbox" data-theme="d" id="chktandc" class="custom"/>
+                                        <label for="chktandc">I agree to the Terms and Conditions</label>
+                                    </fieldset>
+                                </div>
+                            <a data-role="button" data-icon="check" data-mini="true" data-inline="true" class="ui-submit" id="btncreateAccount">Create Account</a>
+                            <a href="#dialogPage" data-icon="back" data-mini="true" data-role="button" data-theme="e" data-inline="true" data-direction="reverse">Return to Login</a>
+                         </div>
+                   
+                        </form>
+                </div>
+                <!-- /content -->
+            </div>
+            <!-- /End of Registration page -->
+
+
+            <!-- Update Profile Page - user enters Personal information -->
+            <div data-role="page" id="updateProfile" data-theme="b">
+
+                <div data-role="header">
+                    <h2>Update Profile</h2>
+                </div>
+                <!-- /header -->
+
+                <div data-role="content">
+                    <div id="profile1" data-theme="b">
+                        <p id="ProfileExp" data-theme="a"><strong>Your profile update should take less than 10 minutes to complete. Answer as accurately and honestly as possible so that we can provide the best possible match for you</strong></p>
+                        <div id="profiletable">
+                           <p>
+                                <input name="txt_newUserReg_FirstName" id="FirstName" value="" required="required" data-inline="true" type="text" placeholder="Enter First Name" title="Enter your First Name"/>
+                            </p>
+                            <p>
+                                <input name="txt_newUserReg_LastName" id="LastName" value="" required="required" data-inline="true" type="text" placeholder="Enter Last Name" title="Enter Last Name" />
+                            </p>
+                            <div data-role="fieldcontain">
+                                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                                    <legend>Sex: </legend>
+                                    <input name="radio-choice-h-1" id="radio-choice-h-1a" value="off" type="radio"/>
+                                    <label for="radio-choice-h-1a">Male</label>
+                                    <input name="radio-choice-h-2" id="radio-choice-h-2a" value="off" type="radio"/>
+                                    <label for="radio-choice-h-2a">Female</label>
+                                </fieldset>
+                                </div>
+                            <div>
+                                <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                                    <legend>Orientation: </legend>
+                                    <input name="checkbox-h-1" id="checkbox-h-1a" value="off" type="checkbox"/>
+                                    <label for="checkbox-h-1a">Male</label>
+                                    <input name="checkbox-h-2" id="checkbox-h-2a" value="off" type="checkbox"/>
+                                    <label for="checkbox-h-2a">Female</label>
+                                </fieldset>
+                                <div>
+                                <label for="date">Date of Birth:</label>
+                                <input type="date" name="date" id="date" value="" />
+                                    </div>
+                            </div> 
+                            <a data-role="button" data-icon="check" data-mini="true" data-inline="true" class="ui-submit" id="btnNext">Next </a>
+                            <a href="#dialogPage" data-icon="back" data-mini="true" data-role="button" data-theme="e" data-inline="true" data-direction="reverse">Cancel</a>                          
+                        <form>
+                            <label for="progress1">Progress:</label>
+                            <input name="progress1" data-track-theme="d" data-theme="b" data-highlight="true" id="progress1" disabled="disabled" min="0" max="100" value="20" type="range">
+                        </form>
+                    </div>
+                </div>
+                <!-- /content -->
+
+            </div>
+                </div>
+            <!-- /page three -->
+
+
+            <!-- Start of questionaire page: #questionaire This is the first of 5 questionaire pages -->
+            <div data-role="page" id="questionaire1" data-theme="a">
+
+                <div data-role="header">
+                    <h1>Two</h1>
+                </div>
+                <!-- /header -->
+
+                <div data-role="content" data-theme="b">
+                    <h2>Two</h2>
+                    <p id="deviceProperties">getting Device Properties...</p>
+                    <p id="connectionType">Getting Connection Type...</p>
+                    <p id="mylocation">Getting location info...</p>
+                    <p>I have an id of "two" on my page container. I'm the second page container in this multi-page template.</p>
+                    <p>Notice that the theme is different for this page because we've added a few <code>data-theme</code> swatch assigments here to show off how flexible it is. You can add any content or widget to these pages, but we're keeping these simple.</p>
+                    <p><a href="#dialogPage" data-direction="reverse" data-role="button" data-theme="b">Back to page "one"</a></p>
+                    <label for="progress2">Progress:</label>
+                    <input name="progress2" data-track-theme="d" data-theme="b" data-highlight="true" id="progress2" disabled="disabled" min="0" max="100" value="40" type="range">
+                </div>
+                <!-- /content -->
+
+                <div data-role="footer">
+                    <h4>Page Footer</h4>
+                </div>
+                <!-- /footer -->
+            </div>
+            <!-- /Endo of Questionaire page 1 -->
+
+            <!-- User agrees to T's and C's -->
+            <div data-role="dialog" id="termsandconditions" data-rel="back" data-close-btn="true">
+
+                <div data-role="header">
+                    <h1>Terms and Conditions</h1>
+                </div>
+                <!-- /header -->
+
+                <div data-role="content" data-theme="b">
+                    <textarea name="tandC" id="tandc" data-theme="b">
+            In using this website you are deemed to have read and agreed to the following terms and conditions:
+
+
+The following terminology applies to these Terms and Conditions, Privacy Statement and Disclaimer Notice and any or all Agreements: "Client", “You and “Your refers to you, the person accessing this website and accepting the Company’s terms and conditions. "The Company", “Ourselves, “We and "Us", refers to our Company. “Party, “Parties, or “Us, refers to both the Client and ourselves, or either the Client or ourselves. All terms refer to the offer, acceptance and consideration of payment necessary to undertake the process of our assistance to the Client in the most appropriate manner, whether by formal meetings of a fixed duration, or any other means, for the express purpose of meeting the Client’s needs in respect of provision of the Company’s stated services/products, in accordance with and subject to, prevailing English Law. Any use of the above terminology or other words in the singular, plural, capitalisation and/or he/she or they, are taken as interchangeable and therefore as referring to same.
+
+
+Privacy Statement
+We are committed to protecting your privacy. Authorized employees within the company on a need to know basis only use any information collected from individual customers. We constantly review our systems and data to ensure the best possible service to our customers. Parliament has created specific offences for unauthorised actions against computer systems and data. We will investigate any such actions with a view to prosecuting and/or taking civil proceedings to recover damages against those responsible
+
+
+Confidentiality
+We are registered under the Data Protection Act 1998 and as such, any information concerning the Client and their respective Client Records may be passed to third parties. However, Client records are regarded as confidential and therefore will not be divulged to any third party, other than [our manufacturer/supplier(s) and] if legally required to do so to the appropriate authorities. Clients have the right to request sight of, and copies of any and all Client Records we keep, on the proviso that we are given reasonable notice of such a request. Clients are requested to retain copies of any literature issued in relation to the provision of our services. Where appropriate, we shall issue Client’s with appropriate written information, handouts or copies of records as part of an agreed contract, for the benefit of both parties.
+
+We will not sell, share, or rent your personal information to any third party or use your e-mail address for unsolicited mail. Any emails sent by this Company will only be in connection with the provision of agreed services and products.
+
+
+Disclaimer
+Exclusions and Limitations 
+The information on this web site is provided on an "as is" basis. To the fullest extent permitted by law, this Company:
+	excludes all representations and warranties relating to this website and its contents or which is or may be provided by any affiliates or any other third party, including in relation to any inaccuracies or omissions in this website and/or the Company’s literature; and 
+	excludes all liability for damages arising out of or in connection with your use of this website. This includes, without limitation, direct loss, loss of business or profits (whether or not the loss of such profits was foreseeable, arose in the normal course of things or you have advised this Company of the possibility of such potential loss), damage caused to your computer, computer software, systems and programs and the data thereon or any other direct or indirect, consequential and incidental damages. 
+This Company does not however exclude liability for death or personal injury caused by its negligence. The above exclusions and limitations apply only to the extent permitted by law. None of your statutory rights as a consumer are affected. 
+
+
+Payment
+Cash or Personal Cheque with Bankers Card, all major Credit/Debit Cards, Bankers Draft or BACS Transfer are all acceptable methods of payment. Our Terms are payment in full within thirty days. All goods remain the property of the Company until paid for in full. Monies that remains outstanding by the due date will incur late payment interest at the rate of 2% above the prevailing Bank of England's base rate on the outstanding balance until such time as the balance is paid in full and final settlement. We reserve the right to seek recovery of any monies remaining unpaid sixty days from the date of invoice via collection Agencies and/or through the Small Claims Court in the event that the outstanding balance does not exceed £3000. In such circumstances, you shall be liable for any and all additional administrative and/or court costs.
+
+        </textarea>
+
+                </div>
+
+            </div>
+            <!-- /content -->
+            <!-- /End of Terms and Conditions page -->
+    <div data-role="dialog" id="changePW" data-close-btn="none">
+                <div data-role="content">
+                    <div class="ui-body ui-body-b">
+                        <input name="uname" id="uname" value="" placeholder="username" data-theme="a" type="text" title="Please enter your User Name" required>
+                        <div>
+                            <a data-role="button" data-icon="check" data-mini="true" data-inline="true" class="ui-submit" id="changepassword">Change Password</a>
+                            <a href="#dialogPage" data-icon="back" data-mini="true" data-role="button" data-theme="e" data-inline="true" data-direction="reverse">Return to Login</a>
+                            </div>
+
+                     </div>
+        </div>
+		</div>
+
+            <div data-role="dialog" id="IM" data-close-btn="none">
+                <div data-role="header">
+                    <h1>Instant Message</h1>
+                </div>
+                <!-- /header -->
+                <div data-role="content" data-theme="b">
+                    <div class="phonoHldr">
+                        <div class="phono" style="display: none;">
+                            <div class="phonoHeader">
+                                <a href="#" title="Remove" class="closePhono"></a>
+                                <span class="phonoIDLabel phonoID"></span><span class="audioType"></span><span class="phonoIDLabel">Session Id:</span> <span class="sessionId">
+                                    <img style="margin-left: 10px;" align="absmiddle" src="css/images/ajax-loader.gif" /></span>
+                            </div>
+                            <div class="phoneControl">
+                                <div class="inputs">
+                                    <input type="text" class="chatTo pretty" value="" />
+                                    <input type="button" class="chat" value="Chat" />
+
+                                    <div class="chats">
+                                        <div class="chatHldr" style="display: none;">
+                                            <div class="chatHeader">
+                                                <a href="#" title="Remove" class="closeChat"></a>
+                                                <span class="chatID"></span>
+                                                <span class="chatDetail"></span>
+                                            </div>
+                                            <div class="chatBox">
+                                            </div>
+                                            <div class="chatInputHldr">
+                                                <input type="text" class="chatTxtInput" />
+                                                <input type="button" class="sendMsg" value="send" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--
+        <div id="Div2">
+               <div>
+                   <ul>
+                        <li data-role="fieldcontain">
+                            <div class="ui-body ui-body-b"
+                            <span class="IMtextarea">Hello there!</span>
+                            </div>
+			               </li>
+                        <li data-role="fieldcontain">
+				                <select name="select-choice-a" id="select-choice-a" data-native-menu="false" data-theme="a">
+					                <option>Instant Messages</option>
+					                <option value="Hi">Hi!</option>
+					                <option value="Liketohookup">Would you like to Hook Up?</option>
+					                <option value="Sure I do">Sure I do!</option>
+					                <option value="Nothankyou">No Thank You!</option>
+				                </select>
+			            </li>
+                     </ul>
+                   <div class="ui-body ui-body-b">
+                   <fieldset class="ui-grid-a">
+	                        <div class="ui-block-a"><button id="IMCloseButton" type="button" data-theme="a" >Close</button></div>
+	                        <div class="ui-block-b"><button id="IMSend" type="submit" class="ui-submit" data-theme="e">Send</button></div>	   
+                    </fieldset>
+                     </div>
+        </div>
+		</div>
+        -->
+                </div>
+                <!-- /content -->
+            </div>
+            <!-- /End of Instant Message Dialog -->
+    
+</body>
+</html>

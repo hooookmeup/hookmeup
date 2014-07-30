@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+     <script type="text/javascript" src="Scripts/jquery-1.7.1.js"></script>
+    <script type="text/javascript" src="Scripts/userservice.js"></script>
+    <script src="http://code.angularjs.org/1.0.5/angular.js"></script>
+</head>
+<body>
+
+   <div ng-app ng-controller="QuestionController">
+    <div ng-repeat="question in questionList" style="margin: 0 auto ; border: 1px solid red ; padding:7px">
+        <div>{{question.name}}</div>
+        <input type="radio" name="rdgrpstate" value="ct" />Connecticut
+        <br />
+        <input type="radio" name="rdgrpstate" value="ny" />New York
+        <br />
+        <input type="radio" name="rdgrpstate" value="nj" />New Jersey
+        <br />
+        <input type="radio" name="rdgrpstate" value="ma" />Massatutues
+        <br />
+    </div>
+</div>
+
+</body>
+</html>
